@@ -4,14 +4,14 @@
 
 #register {
 	width: 450px;
-	height: 450px;
+	height: 500px;
 	display: inline-block;
 	border: 2px solid black;
 }
 
 #login {
 	width: 450px;
-	height: 450px;
+	height: 500px;
 	display: inline-block;
 	vertical-align: top;
 	border: 2px solid black;

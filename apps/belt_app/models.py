@@ -24,9 +24,11 @@ class UserManager(models.Manager):
 			errors.append('First Name cannot be blank')
 		if len(postData['last_name']) < 1:
 			errors.append('Last Name cannot be blank')
+		if not re.match(r'^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$', postData['birthday']):
+			errors.append('Birthdate field if not valid. please use format DD/MM/YYYY')
 		if errors == []:
 			encrypt_pw = bcrypt.hashpw(postData['password'].encode(), bcrypt.gensalt())
-			User.objects.create(first_name = postData['first_name'], last_name = postData['last_name'], email = postData['email'], password = encrypt_pw)
+			User.objects.create(first_name = postData['first_name'], last_name = postData['last_name'], email = postData['email'], password = encrypt_pw, birthday = birthday)
 			user_valid = User.objects.get(email = postData['email'])
 			return ["valid", user_valid]
 		else: 
