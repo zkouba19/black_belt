@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Review Home Page</title>
+</head>
+<body>
+<div id="container">
+	<div>
+		
+			
+		<h2>Welcome {{ users.first_name }}</h2>
+			
+		<button><a href="/log_out">Logout</a></button>
+	</div>
+	<!-- recent/all quotes -->
+	<div>
+		<h3>Recent Quotes:</h3>
+		{% for quote in quotes %}
+		<div id="favorite">
+			{{ quote.author }}: {{ quote.quote }}
+			<p>Posted by: <a href="/user/{{ quote.user.id }}">{{ quote.user.first_name }}</a></p>
+			<button><a href="/add_favorite/{{ quote.id }}">Add To My List</a></button>
+		</div>
+		{% endfor %}
+	</div>
+	<!-- end of recent/all quotes -->
+	<!-- users favorites -->
+	<div>
+		<h3>Your Favorites:</h3>
+		{% for favorite in favorites %}
+		<div id="favorite">
+			{{ favorite.quote.author }}: {{ favorite.quote.quote }}
+			<p>Posted by: <a href="/user/{{ favorite.quote.user.id }}">{{ favorite.quote.user.first_name }}</a></p>
+			<button><a href="/remove_favorite/{{ favorite.quote.id }}">Remove From My List</a></button>
+		</div>
+		{% endfor %}
+	</div>
+	<!-- end of users favorites -->
+	<!-- form  -->
+	<div>
+		<h3>Make a new Quote</h3>
+		<div>
+			<form action="/add_quote/" method="post">
+			{% csrf_token %}
+				<label for="author">Quoted By:</label>
+				<input type="text" name="author">
+				<label for="quote">Message:</label>
+				<textarea name="quote"></textarea>
+				<input type="submit" name="submit">
+			</form>
+			{% for message in messages %}
+
+			{{ message }}
+
+			{% endfor %}
+		</div>
+	<!-- end of form  -->
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+#container {
+	width: 970px;
+}
+
+#register {
+	width: 450px;
+	height: 450px;
+	display: inline-block;
+	border: 2px solid black;
+}
+
+#login {
+	width: 450px;
+	height: 450px;
+	display: inline-block;
+	vertical-align: top;
+	border: 2px solid black;
+}
+
+h1 {
+	margin-left: 20px;
+}
+
+form {
+	margin-left: 20px;
+	text-align: center;
+}
+
+input {
+	display: block;
+	text-align: center;
+}
+
+p {
+	text-align: left;
+}
